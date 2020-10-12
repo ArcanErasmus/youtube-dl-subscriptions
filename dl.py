@@ -16,7 +16,7 @@ from datetime import datetime
 if len(glob('last.txt')) == 0:
     f = open('last.txt', 'w')
     f.write(str(time()))
-    print('Initialized a last.txt file with current timestamp.')
+    print('Initialized a last.txt file with current timestamp.\n')
     f.close()
 
 else:
@@ -24,7 +24,7 @@ else:
     content = f.read()
     f.close()
 
-    outline = opml.parse('subs.xml')
+    outline = opml.parse('subscription_manager.xml')
 
     ptime = datetime.utcfromtimestamp(float(content))
     ftime = time()
@@ -32,7 +32,7 @@ else:
     urls = []
 
     for i in range(0,len(outline[0])):
-        urls.append(outline[0][i].xmlUrl)
+        urls.append(outline[0][i].xmlURL)
 
     videos = []
     for i in range(0,len(urls)):
@@ -45,11 +45,16 @@ else:
                 videos.append(feed['items'][j]['link'])
 
     if len(videos) == 0:
-        print('Sorry, no new video found')
+        print('\nSorry, no new video found')
     else:
-        print(str(len(videos))+' new videos found')
+        print('\n'+str(len(videos))+' new videos found')
 
-    ydl_opts = {'ignoreerrors': True}
+        # 'ignoreerrors': True,
+    ydl_opts = {
+        'subtitleslangs': 'en',
+        'writesubtitles': True,
+        'outtmpl': 'E:/VODs/Youtube/%(upload_date)s_%(uploader)s_%(title)s.%(ext)s'
+    }
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download(videos)
