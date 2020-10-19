@@ -49,8 +49,8 @@ else:
     else:
         print('\n'+str(len(videos))+' new videos found')
 
-        # 'ignoreerrors': True,
     ydl_opts = {
+        'ignoreerrors': True,
         'subtitleslangs': 'en',
         'writesubtitles': True,
         'outtmpl': 'E:/VODs/Youtube/%(upload_date)s_%(uploader)s_%(title)s.%(ext)s'
