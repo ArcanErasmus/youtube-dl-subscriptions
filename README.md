@@ -16,12 +16,12 @@ Clone the repository
 
 Install the requirements
 
-    pip install -r requirements.txt
+    py pip install -r requirements.txt
 
-Download your YouTube's subscriptions OPML file by visiting [this URL](https://www.youtube.com/subscription_manager?action_takeout=1). Save the file as `subs.xml` into the cloned repository folder.
+Download your YouTube's subscriptions OPML file by visiting [this URL](https://www.youtube.com/subscription_manager?action_takeout=1). Save the file as `subscription_manager.xml` into the cloned repository folder.
 
 You can then run the script
 
-    python3 dl.py
+    py dl.py
 
 A `last.txt` file will be created in order to avoid downloading the same videos on the next run.
